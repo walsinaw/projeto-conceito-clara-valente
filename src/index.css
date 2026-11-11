@@ -1,0 +1,189 @@
+@import 'tailwindcss';
+
+/* Identidade visual: cores e fontes viram classes do Tailwind (bg-musgo, text-marrom, font-serif...)
+   Paleta: verde-musgo (principal), sálvia (verde claro de apoio), off-white (fundo) e marrom (detalhes). */
+@theme {
+  --color-musgo: #3b5240;
+  --color-musgo-escuro: #26352a;
+  --color-salvia: #a8bc98;
+  --color-salvia-clara: #dde4d3;
+  --color-papel: #eeebe2; /* off-white principal */
+  --color-linho: #f7f5ef; /* off-white mais claro, para cards */
+  --color-marrom: #6e4b34;
+  --color-areia: #cdb89c;
+  --color-tinta: #263027; /* cor do texto */
+  --color-cinza: #5c6359; /* texto secundário */
+  --color-linha: #d9d5c8; /* bordas */
+
+  --font-sans: 'Questrial', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Times New Roman', Tinos, Times, serif; /* Tinos: mesma medida da Times, para celulares Android */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 92px; /* altura do menu fixo */
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    @apply bg-papel font-sans text-tinta;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-serif font-normal;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+  }
+  p {
+    @apply leading-[1.75] text-cinza;
+  }
+  ::selection {
+    @apply bg-salvia text-musgo-escuro;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Animações
+   - .reveal: elementos aparecem ao descer a página (ver src/components/ui/Reveal.tsx)
+   - .entrada: roda uma vez ao carregar o topo da página
+   - .nav-*: transição do menu do topo virando pílula ao rolar
+   - .card-hover: cards sobem de leve ao passar o mouse
+   Quem configurou "reduzir movimento" no celular/computador vê tudo sem animação.
+   --------------------------------------------------------------------------- */
+:root {
+  --suave: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal {
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(32px);
+  transition:
+    opacity 0.9s var(--suave),
+    transform 0.9s var(--suave),
+    filter 0.9s var(--suave);
+}
+.reveal-esquerda {
+  transform: translateX(-32px);
+}
+.reveal-direita {
+  transform: translateX(32px);
+}
+.reveal-zoom {
+  transform: scale(0.96);
+}
+.reveal.is-visible {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+
+@keyframes entrada {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(24px);
+  }
+}
+.entrada {
+  animation: entrada 1s 0.1s var(--suave) both;
+}
+.entrada-2 {
+  animation: entrada 1s 0.3s var(--suave) both;
+}
+
+/* Menu do topo (mesmo esquema do site da WAW) */
+.nav-barra {
+  transition:
+    max-width 0.6s var(--suave),
+    width 0.6s var(--suave),
+    height 0.6s var(--suave),
+    margin-top 0.6s var(--suave),
+    padding 0.6s var(--suave),
+    border-radius 0.6s var(--suave),
+    border-color 0.6s var(--suave),
+    background-color 0.6s var(--suave),
+    box-shadow 0.6s var(--suave);
+}
+.nav-logo {
+  transition: width 0.4s var(--suave);
+}
+.nav-troca {
+  transition: opacity 0.35s var(--suave);
+}
+.nav-links {
+  transition:
+    gap 0.6s var(--suave),
+    margin 0.6s var(--suave);
+}
+.nav-sublinha::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s var(--suave);
+}
+.nav-sublinha:hover::after {
+  transform: scaleX(1);
+}
+.nav-x {
+  transition:
+    transform 0.35s var(--suave),
+    top 0.35s var(--suave);
+}
+.nav-tela {
+  transition:
+    opacity 0.35s var(--suave),
+    visibility 0.35s;
+}
+.nav-tela-link {
+  transition:
+    opacity 0.5s var(--suave),
+    transform 0.5s var(--suave);
+}
+
+/* Cards: deslocamento curto e macio ao passar o mouse */
+.card-hover {
+  transition:
+    transform 0.45s var(--suave),
+    box-shadow 0.45s var(--suave),
+    background-color 0.45s var(--suave);
+}
+@media (hover: hover) {
+  .card-hover:hover {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+  .entrada,
+  .entrada-2 {
+    animation: none;
+  }
+  .nav-barra,
+  .nav-logo,
+  .nav-troca,
+  .nav-links,
+  .nav-tela,
+  .nav-tela-link,
+  .card-hover {
+    transition: none;
+  }
+  .card-hover:hover {
+    transform: none;
+  }
+}

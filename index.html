@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- SEO (versão conceito para o portfólio da WAW Studio) -->
+    <title>Clara Valente | Site conceito para nutricionista, por WAW Studio</title>
+    <meta
+      name="description"
+      content="Projeto conceito da WAW Studio: landing page para nutricionista, com agendamento pelo WhatsApp, e-books, depoimentos e mapa, pensada primeiro para o celular."
+    />
+    <meta name="theme-color" content="#3B5240" />
+    <!-- TODO: depois de publicar, trocar SEU-DOMINIO pelo endereço final do site (aqui e nas tags og:url / og:image) -->
+    <link rel="canonical" href="https://SEU-DOMINIO.com.br/" />
+
+    <!-- Open Graph (prévia ao compartilhar no WhatsApp, Instagram, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="WAW Studio" />
+    <meta property="og:title" content="Site conceito para nutricionista | WAW Studio" />
+    <meta
+      property="og:description"
+      content="Landing page leve, natural e feita para agendar consultas. Projeto conceito da WAW Studio."
+    />
+    <meta property="og:url" content="https://SEU-DOMINIO.com.br/" />
+    <meta property="og:image" content="https://SEU-DOMINIO.com.br/img/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Ícones -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Fontes: Times New Roman (títulos; Tinos é a reserva para Android) + Questrial (textos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Questrial&family=Tinos&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Foto do topo carrega antes do resto -->
+    <link rel="preload" as="image" href="/img/hero-800.webp" imagesrcset="/img/hero-480.webp 480w, /img/hero-800.webp 800w" imagesizes="(max-width: 768px) 100vw, 480px" />
+  </head>
+  <body>
+    <noscript>Ative o JavaScript para ver o site. Projeto conceito da WAW Studio: wawstudio.com.br</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
